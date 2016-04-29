@@ -20,7 +20,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Project Toscana</a>
+            <a class="navbar-brand" href="">Project Toscana</a>
         </div>
     </div>
 </nav>
