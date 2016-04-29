@@ -16,14 +16,15 @@ if (isset($_GET['ID'])) {
 
     $IID = $json[$ID]["ID"]; //Bild-ID
     $type = $json[$ID]["type"];
-    $imageURL = "/uploads/".$IID."_preview.".$type;
+    $imageURL = "uploads/".$IID."_preview.".$type;
 }
 ?>
 
 <div class="imageController">
+    <!--
     <div class="nextImage">
         <a href="#"><span class = "glyphicon glyphicon-menu-right"></span></a>
-    </div>
+    </div>-->
     <div class="imageView">
         <?php
             echo "<img src='".$imageURL."'>";

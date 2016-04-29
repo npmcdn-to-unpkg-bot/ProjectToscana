@@ -18,7 +18,7 @@ $.getJSON('getJSON.php', function(json) {
     for (; imageNumber < imageCount+addImageCount; imageNumber++) {
         if (images[imageCount]["ID"] != null) {
             console.log(imageCount);
-            var imageURL = "/uploads/" + images[imageNumber]["ID"] + "_thumbnail." + images[imageNumber]["type"];
+            var imageURL = "uploads/" + images[imageNumber]["ID"] + "_thumbnail." + images[imageNumber]["type"];
             var URL = "imageView.php?ID=" + imageNumber;
             $grid.append("<div class='grid-item'><a href='" + URL + "'><img src='" + imageURL + "'></a></div>");
         }
