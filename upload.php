@@ -6,7 +6,9 @@ require_once "require/header.php";
 <div class="container">
 
     <h1>Bilder hochladen</h1>
-    <form action="actions/upload-action.php" class="dropzone" enctype="multipart/form-data"></form>
+    <form action="actions/upload-action.php" class="dropzone" enctype="multipart/form-data">
+        <div class="dz-message">Drag & Drop oder Klicken</div>
+    </form>
 
 </div>
 

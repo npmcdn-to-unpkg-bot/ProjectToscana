@@ -30,6 +30,16 @@ if (isset($_GET['ID'])) {
             echo "<img src='".$imageURL."'>";
         ?>
     </div>
+    <div class="download">
+        <?php
+        echo "<a href='actions/download-action.php?ID=".$IID."&type=".$type."' class=\"btn btn-primary btn-block\" download><span class=\"glyphicon glyphicon-download\"></span> Download</a>";
+        ?>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+
+    </div>
 </div>
 <!--
 <div class="container">
