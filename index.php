@@ -13,7 +13,7 @@ require_once "require/mysql.php";
 
         while ($row = $result->fetch_assoc()) {
             $imageURL = "uploads/".$row["ID"]."_thumbnail.".$row["type"];
-            $URL = "imageView.php?ID=".$row["ID"];
+            $URL = "imageView.php?ID=".$row["ID"]."&type=".$row["type"];
             printf("<div class='grid-item'><a href='".$URL."'><img src='".$imageURL."'></a></div>");
         }
 

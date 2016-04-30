@@ -3,21 +3,13 @@ require_once "require/middleware.php";
 require_once "require/mysql.php";
 require_once "require/header.php";
 
-if (isset($_GET['ID'])) {
 
+if (isset($_GET['ID']) && isset($_GET['type'])) {
     $ID = $_GET["ID"];
-
-    $sql = "SELECT * FROM fotos";
-    $result = $mysqli->query($sql);
-    $json = array();
-
-    $result = $mysqli->query($sql) or die($mysqli->error);
-    $json = $result->fetch_all( MYSQLI_ASSOC );
-
-    $IID = $json[$ID]["ID"]; //Bild-ID
-    $type = $json[$ID]["type"];
-    $imageURL = "uploads/".$IID."_preview.".$type;
+    $type = $_GET["type"];
+    $imageURL = "uploads/".$ID."_preview.".$type;
 }
+
 ?>
 
 <div class="imageController">
@@ -32,7 +24,7 @@ if (isset($_GET['ID'])) {
     </div>
     <div class="download">
         <?php
-        echo "<a href='actions/download-action.php?ID=".$IID."&type=".$type."' class=\"btn btn-primary btn-block\" download><span class=\"glyphicon glyphicon-download\"></span> Download</a>";
+        echo "<a href='actions/download-action.php?ID=".$ID."&type=".$type."' class=\"btn btn-primary btn-block\" download><span class=\"glyphicon glyphicon-download\"></span> Download</a>";
         ?>
     </div>
 </div>
