@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["password"])) {
     $pw = $_POST["password"];
-    if ($pw == "test") {
+    if (strtolower($PW) == "rosmarin") {
         session_start();
         $_SESSION['auth'] = 1;
         header("Location: ../index.php");
