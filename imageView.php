@@ -74,6 +74,5 @@ if (isset($_GET['ID'])) {
 
 <?php
 require_once "require/javascript.php";
-echo "<script src=\"js/imageGrid.js\"></script>";
 require_once "require/footer.php";
 ?>

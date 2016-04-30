@@ -27,7 +27,10 @@ if (!empty($_FILES)) {
 
  if (move_uploaded_file($tempFile,$targetFile)) {
 
-  $sql = "INSERT INTO fotos (UID, ID, type) VALUES ('', '".$id."', '".$type."')";
+  $height = makePreview($targetFile, $targetThumbnailFile, 350);
+  makePreview($targetFile, $targetPreviewFile, 1280);
+
+  $sql = "INSERT INTO fotos (UID, ID, type, width, height) VALUES ('', '".$id."', '".$type."', 350, '".$height."')";
 
   if ($mysqli->query($sql) === TRUE) {
    echo "New record created successfully";
@@ -38,8 +41,6 @@ if (!empty($_FILES)) {
   $mysqli->close();
 
 
-  makePreview($targetFile, $targetThumbnailFile, 350);
-  makePreview($targetFile, $targetPreviewFile, 1280);
  }
 
 }
@@ -57,4 +58,6 @@ function makePreview($src, $dest, $desired_width) {
  imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);
 
  imagejpeg($virtual_image, $dest);
+
+ return $desired_height;
 }
