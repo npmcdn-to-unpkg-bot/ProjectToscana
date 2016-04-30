@@ -1,4 +1,43 @@
+var $grid = $('.grid').masonry({
+    // options
+    itemSelector: '.grid-item',
+    columnWidth: 350
+});
+
+
+var images;
+
+var $items = "";
+
+$.getJSON('getJSON.php', function(json) {
+
+    console.log("JSON");
+
+    images = json;
+
+    for (var i = 0; i < images.length; i++) {
+        var imageURL = "uploads/" + images[i]["ID"] + "_thumbnail." + images[i]["type"];
+        var URL = "imageView.php?ID=" + i;
+        $items += "<div class='grid-item'><a href='" + URL + "'><img src='" + imageURL + "'></a></div>";
+        console.log($items);
+    }
+
+
+    $grid.append( $items).masonry( 'appended', $items );
+    $grid.imagesLoaded( function() {
+        console.log("Append");
+    });
+
+
+
+});
+
+
+/*
+
+
 var $grid = $('.grid');
+
 
 var addImageCount = 20;
 
@@ -30,6 +69,7 @@ $.getJSON('getJSON.php', function(json) {
 });
 
 
+
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
 
@@ -44,4 +84,6 @@ $(window).scroll(function() {
         imageCount = imageCount + addImageCount;
     }
 });
+
+*/
 
