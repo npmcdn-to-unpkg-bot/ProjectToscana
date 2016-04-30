@@ -20,8 +20,11 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="">Project Toscana</a>
+            <a class="navbar-brand" href="index.php">Project Toscana</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li><a href="upload.php">Hochladen</a></li>
+        </ul>
     </div>
 </nav>
 
