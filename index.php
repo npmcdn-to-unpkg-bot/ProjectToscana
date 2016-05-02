@@ -4,8 +4,6 @@ require_once "require/header.php";
 require_once "require/mysql.php";
 ?>
 
-<div class="container">
-
     <div class="grid">
         <?php
         $sql = "SELECT * FROM fotos";
@@ -19,8 +17,6 @@ require_once "require/mysql.php";
 
         ?>
     </div>
-
-</div>
 
 <?php
 require_once "require/javascript.php";

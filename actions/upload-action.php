@@ -27,10 +27,10 @@ if (!empty($_FILES)) {
 
  if (move_uploaded_file($tempFile,$targetFile)) {
 
-  $height = makePreview($targetFile, $targetThumbnailFile, 350);
+  makePreview($targetFile, $targetThumbnailFile, 350);
   makePreview($targetFile, $targetPreviewFile, 1280);
 
-  $sql = "INSERT INTO fotos (UID, ID, type, width, height) VALUES ('', '".$id."', '".$type."', 350, '".$height."')";
+  $sql = "INSERT INTO fotos (UID, ID, type) VALUES ('', '".$id."', '".$type."')";
 
   if ($mysqli->query($sql) === TRUE) {
    echo "New record created successfully";
@@ -59,5 +59,4 @@ function makePreview($src, $dest, $desired_width) {
 
  imagejpeg($virtual_image, $dest);
 
- return $desired_height;
 }
