@@ -16,7 +16,7 @@ if (!empty($_FILES)) {
  $name = $_FILES['file']['name'];
  $type = pathinfo($name, PATHINFO_EXTENSION);
 
- if (in_array(strtolower($tyoe), $allowedTypes)) {
+ if (in_array(strtolower($type), $allowedTypes)) {
 
 
   $id = uniqid();
