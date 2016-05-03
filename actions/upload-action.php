@@ -14,7 +14,7 @@ if (!empty($_FILES)) {
  $tempFile = $_FILES['file']['tmp_name'];
 
  $name = $_FILES['file']['name'];
- $mime = $_FILES['file']['mime'];
+ $mime = $tempFile['mime'];
  $type = pathinfo($name, PATHINFO_EXTENSION);
 
  if (in_array(strtolower($type), $allowedTypes)) {
