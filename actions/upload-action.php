@@ -7,17 +7,17 @@ $storeFolder = '../uploads/';
 
 $storeThumbnailFolder = "";
 
-$allowedTypes = ["jpg", "jpeg", "png", "tiff", "bmp", "gif"];
+$allowedTypes = ["jpg", "jpeg", "png", "gif"];
 
 if (!empty($_FILES)) {
 
  $tempFile = $_FILES['file']['tmp_name'];
 
  $name = $_FILES['file']['name'];
+ $mime = $_FILES['file']['mime'];
  $type = pathinfo($name, PATHINFO_EXTENSION);
 
  if (in_array(strtolower($type), $allowedTypes)) {
-
 
   $id = uniqid();
 
@@ -32,8 +32,8 @@ if (!empty($_FILES)) {
 
   if (move_uploaded_file($tempFile,$targetFile)) {
 
-   makePreview($targetFile, $targetThumbnailFile, 350);
-   makePreview($targetFile, $targetPreviewFile, 1280);
+   makePreview($targetFile, $targetThumbnailFile, 350, $mime);
+   makePreview($targetFile, $targetPreviewFile, 1280, $mime);
 
    $sql = "INSERT INTO fotos (UID, ID, type) VALUES ('', '" . $id . "', '" . $type . "')";
 
@@ -51,9 +51,24 @@ if (!empty($_FILES)) {
 
 }
 
-function makePreview($src, $dest, $desired_width) {
+function makePreview($src, $dest, $desired_width, $mime) {
 
- $source_image = imagecreatefromjpeg($src);
+ switch ($mime) {
+  case 'image/jpeg':
+   $source_image = imagecreatefromjpeg($src);
+   break;
+
+  case 'image/png':
+   $source_image = imagecreatefrompng($src);
+   break;
+
+  case 'image/gif':
+   $source_image = imagecreatefromgif($src);
+   break;
+
+  default:
+   throw new Exception('Dieses Bildformat wird nicht unerstützt');
+ }
  $width = imagesx($source_image);
  $height = imagesy($source_image);
 
