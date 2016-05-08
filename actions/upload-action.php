@@ -14,7 +14,7 @@ if (!empty($_FILES)) {
  $tempFile = $_FILES['file']['tmp_name'];
 
  $name = $_FILES['file']['name'];
- $mime = $tempFile['mime'];
+ //$mime = $tempFile['mime'];
  $type = pathinfo($name, PATHINFO_EXTENSION);
 
  if (in_array(strtolower($type), $allowedTypes)) {
@@ -32,8 +32,8 @@ if (!empty($_FILES)) {
 
   if (move_uploaded_file($tempFile,$targetFile)) {
 
-   makePreview($targetFile, $targetThumbnailFile, 350, $mime);
-   makePreview($targetFile, $targetPreviewFile, 1280, $mime);
+   makePreview($targetFile, $targetThumbnailFile, 350, strtolower($type));
+   makePreview($targetFile, $targetPreviewFile, 1280, strtolower($type));
 
    $sql = "INSERT INTO fotos (UID, ID, type) VALUES ('', '" . $id . "', '" . $type . "')";
 
@@ -46,23 +46,26 @@ if (!empty($_FILES)) {
    $mysqli->close();
   }
 
-
   }
 
 }
 
-function makePreview($src, $dest, $desired_width, $mime) {
+function makePreview($src, $dest, $desired_width, $type) {
 
- switch ($mime) {
-  case 'image/jpeg':
+ switch ($type) {
+  case 'jpeg':
    $source_image = imagecreatefromjpeg($src);
    break;
 
-  case 'image/png':
+  case 'jpg':
+   $source_image = imagecreatefromjpeg($src);
+   break;
+
+  case 'png':
    $source_image = imagecreatefrompng($src);
    break;
 
-  case 'image/gif':
+  case 'gif':
    $source_image = imagecreatefromgif($src);
    break;
 
