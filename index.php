@@ -6,7 +6,18 @@ require_once "require/mysql.php";
 
 <?php
 
-$resultsPerPage = 20;
+$sqlOrder = "ORDER BY UID DESC"; //Standart-Sortierung
+
+if (isset($_GET["sorting"])) {
+    $sorting = $_GET["sorting"];
+    if ($sorting == "upload_descending") {
+        $sqlOrder = "ORDER BY UID DESC";
+    } if ($sorting == "upload_ascending") {
+        $sqlOrder = "ORDER BY UID";
+    }
+}
+
+$resultsPerPage = 15;
 
 $sql_all = "SELECT * FROM fotos";
 $result_all = $mysqli->query($sql_all) or die($mysqli->error);
@@ -36,8 +47,7 @@ if ($currentPage > 0 && $currentPage < $totalPages) {
 
     <div class="grid">
         <?php
-        $sql = "SELECT * FROM fotos LIMIT ".$start.",".$resultsPerPage;
-        echo $sql;
+        $sql = "SELECT * FROM fotos ".$sqlOrder." LIMIT ".$start.",".$resultsPerPage;
         $result = $mysqli->query($sql) or die($mysqli->error);
 
         while ($row = $result->fetch_assoc()) {

@@ -17,6 +17,7 @@
 
 <!-- Navigation -->
 
+
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -25,7 +26,25 @@
         <ul class="nav navbar-nav">
             <li><a href="upload.php">Hochladen</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown" id="menu1">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                    Sortierung
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="?sorting=upload_descending">Uploaddatum ↓</a></li>
+                    <li><a href="?sorting=upload_ascending">Uploaddatum ↑</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </nav>
+
+
+<script>
+    $('.dropdown-toggle').dropdown();
+</script>
+
 
 <!-- Navigation ENDE -->
