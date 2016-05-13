@@ -5,9 +5,8 @@ require_once "require/mysql.php";
 ?>
 
 <?php
-echo "<alert>TEST</alert>";
 
-$resultsPerPage = 5;
+$resultsPerPage = 20;
 
 $sql_all = "SELECT * FROM fotos";
 $result_all = $mysqli->query($sql_all) or die($mysqli->error);
@@ -20,10 +19,6 @@ if (isset($_GET["page"])) {
     $currentPage = $_GET["page"];
     if ($currentPage > 0 && $currentPage <= $totalPages) {
         $start = ($currentPage - 1) * $resultsPerPage;
-        echo $currentPage;
-    } else {
-        $start = 0;
-        $currentPage = 1;
     }
 } else {
     $start = 0;
@@ -31,11 +26,11 @@ if (isset($_GET["page"])) {
 }
 
 //Pagination
+
 if ($currentPage > 0 && $currentPage < $totalPages) {
     $nextPage = $currentPage+1;
-    echo "<nav class='pagination'><a href='?page=".$nextPage."'>Next Page</a></nav>";
+    echo "<nav class='pagination' style='display: none'><a href='?page=".$nextPage."'></a></nav>";
 }
-
 
 ?>
 
